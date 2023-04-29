@@ -23,7 +23,7 @@ public class Group {
 
     public Group(Student groupLeader) throws Exception {
         if (groupLeader == null){
-            throw new Exception("Group can not exist without group leader");
+            throw new Exception("Student can not be a null");
         }
         this.students.add(groupLeader);
         this.groupLeader = groupLeader;
@@ -35,19 +35,16 @@ public class Group {
         return this.tasks;
     }
 
+
     public void changeGroupLeader(Student newGroupLeader) throws Exception {
-        if (newGroupLeader == null){
-            throw new Exception("Student can not be the null");
-        }
+        this.checkStudentForNull(newGroupLeader);
         if (!this.students.contains(newGroupLeader)){
             throw new Exception("Add new Group Leader to this Group");
         }
         this.groupLeader = newGroupLeader;
     }
     public void addStudent(Student student) throws Exception {
-        if (student == null) {
-            throw new Exception("Student can not be the null");
-        }
+        this.checkStudentForNull(student);
         for(Student item: this.students){
             if(item.getId() == student.getId()){
                 throw new Exception("Student with same Id is existed in the Group");
@@ -56,9 +53,7 @@ public class Group {
         this.students.add(student);
     }
     public void removeStudent(Student student) throws Exception {
-        if (student == null) {
-            throw new Exception("Student can not be the null");
-        }
+        this.checkStudentForNull(student);
         if (!this.students.contains(student)){
             throw new Exception("This student does not belong to this group");
         }
@@ -68,6 +63,7 @@ public class Group {
         this.students.remove(student);
     }
     public Student renameStudent(UUID studentId, String firstName, String lastName) throws Exception {
+
         for(Student student: this.students){
             if (student.getId() == studentId ) {
                 student.setFirstName(firstName);
@@ -82,5 +78,11 @@ public class Group {
             throw new Exception("Task can not be a null");
         }
         this.tasks.add(task);
+    }
+
+    private void checkStudentForNull(Student student) throws Exception {
+        if (student == null) {
+            throw new Exception("Student can not be a null");
+        }
     }
 }

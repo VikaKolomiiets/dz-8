@@ -8,13 +8,11 @@ public class Student {
     private UUID id;
     private String firstName;
     private String lastName;
-    private List completedTasks;
+    private List<Task> completedTasks;
 
     public Student(String firstName, String lastName) throws Exception {
-        if (lastName == null || lastName.length() < 2)
-            throw new Exception("Last name must contain more than one letter");
-        if (firstName == null || firstName.length() < 2 )
-            throw new Exception("Last name must contain more than one letter");
+        this.checkName(lastName);
+        this.checkName(firstName);
         this.firstName = firstName;
         this.lastName = lastName;
         this.id = UUID.randomUUID();
@@ -28,17 +26,19 @@ public class Student {
         return firstName;
     }
     public void setFirstName(String firstName) throws Exception {
-        if(firstName.length() < 2 || firstName == null)
-            throw new Exception("First name must contain more than one letter");
+        this.checkName(firstName);
         this.firstName = firstName;
     }
     public String getLastName() {
         return lastName;
     }
     public void setLastName(String lastName) throws Exception {
-        if(lastName.length() < 2)
-            throw new Exception("Last name must contain more than one letter");
+        this.checkName(lastName);
         this.lastName = lastName;
     }
 
+    private void checkName(String name) throws Exception {
+        if (name == null || name.length() < 2)
+            throw new Exception("Name is invalid: null or length less than 2 letters");
+    }
 }
