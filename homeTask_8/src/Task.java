@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class Task {
@@ -16,19 +14,14 @@ public class Task {
         return description;
     }
     public void setDescription(String description) throws Exception {
-        this.checkName(description);
+        Guard.checkString(description);
         this.description = description;
     }
     //endregion
 
     public Task(String description) throws Exception {
-        this.checkName(description);
+        Guard.checkString(description);
         this.id = UUID.randomUUID();
         this.description = description;
-    }
-
-    private void checkName(String name) throws Exception {
-        if (name == null || name.length() < 2)
-            throw new Exception("Description is invalid: null or length less than 2 letters");
     }
 }

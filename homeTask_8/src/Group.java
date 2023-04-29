@@ -54,7 +54,8 @@ public class Group {
     }
 
     public Student renameStudent(UUID studentId, String firstName, String lastName) throws Exception {
-
+        Guard.checkString(firstName);
+        Guard.checkString(lastName);
         for (Student student : this.students) {
             if (student.getId() == studentId) {
                 student.setFirstName(firstName);

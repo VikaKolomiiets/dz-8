@@ -19,12 +19,14 @@ public class Main {
         group.addTaskForGroup(thirdTask);
         thirdStudent.completeTask(secondTask);
         thirdStudent.completeTask(thirdTask);
-
         System.out.println(group.getGroupLeader().getFirstName());
         group.changeGroupLeader(secondStudent);
         System.out.println(group.getGroupLeader().getFirstName()  + " " + group.getGroupLeader().getLastName());
         for(Task task: thirdStudent.getCompletedTasks()){
             System.out.println(task.getDescription());
         }
+        group.renameStudent(forthStudent.getId(), "Katarina", "Braitter");
+        group.changeGroupLeader(forthStudent);
+        System.out.println(group.getGroupLeader().getFirstName()  + " " + group.getGroupLeader().getLastName());
     }
 }
