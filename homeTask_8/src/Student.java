@@ -7,7 +7,11 @@ public class Student {
     private String firstName;
     private String lastName;
 
-    public Student(String firstName, String lastName) {
+    public Student(String firstName, String lastName) throws Exception {
+        if (lastName == null || lastName.length() < 2)
+            throw new Exception("Last name must contain more than one letter");
+        if (firstName == null || firstName.length() < 2 )
+            throw new Exception("Last name must contain more than one letter");
         this.firstName = firstName;
         this.lastName = lastName;
         this.id = UUID.randomUUID();
@@ -21,7 +25,8 @@ public class Student {
     }
 
     public void setFirstName(String firstName) throws Exception {
-        if(firstName.length() < 2) throw new Exception("First name must contain more than one letter");
+        if(firstName.length() < 2 || firstName == null)
+            throw new Exception("First name must contain more than one letter");
         this.firstName = firstName;
     }
 
@@ -30,7 +35,8 @@ public class Student {
     }
 
     public void setLastName(String lastName) throws Exception {
-        if(lastName.length() < 2) throw new Exception("Last name must contain more than one letter");
+        if(lastName.length() < 2)
+            throw new Exception("Last name must contain more than one letter");
         this.lastName = lastName;
     }
 }
