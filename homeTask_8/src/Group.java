@@ -19,12 +19,13 @@ import java.util.UUID;
 public class Group {
     private Student groupLeader;
     private List<Student> students = new ArrayList<Student>();
-    private List tasks = new ArrayList<String>();
+    private List tasks = new ArrayList<Task>();
 
     public Group(Student groupLeader) throws Exception {
         if (groupLeader == null){
             throw new Exception("Group can not exist without group leader");
         }
+        this.students.add(groupLeader);
         this.groupLeader = groupLeader;
     }
 
@@ -32,36 +33,33 @@ public class Group {
         return groupLeader;
     }
 
-    public void setGroupLeader(Student groupLeader) {
-        this.groupLeader = groupLeader;
-    }
-
     public List getTasks() {
         return tasks;
     }
-    public List<Student> getStudents() {
-        return students;
-    }
+
 
     public void changeGroupLeader(Student newGroupLeader) throws Exception {
         if (newGroupLeader == null){
             throw new Exception("Student can not be the null");
         }
+        //todo check for present in group, and what to do?
         this.groupLeader = newGroupLeader;
     }
     public void addStudent(Student student) throws Exception {
-        if (student == nul) {
+        if (student == null) {
             throw new Exception("Student can not be the null");
         }
+        //Check Id
         this.students.add(student);
     }
     public void removeStudent(Student student) throws Exception {
-        if (student == nul) {
+        if (student == null) {
             throw new Exception("Student can not be the null");
         }
         if (!this.students.contains(student)){
             throw new Exception("This student does not belong to this group");
         }
+        //Check Student != Leader
         this.students.remove(student);
     }
     public Student renameStudent(UUID studentId, String firstName, String lastName) throws Exception {
@@ -74,7 +72,12 @@ public class Group {
         }
         throw new Exception();
     }
-
+    public void addTaskForGroup(String task) throws Exception {
+        if (task == null) {
+            throw new Exception("Task can not be a null");
+        }
+        this.tasks.add(task);
+    }
 
 
 
