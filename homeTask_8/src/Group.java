@@ -2,39 +2,30 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/*
-Написати клас, який репрезентує групу студентів з наступними полями:
-староста (тип студент)
-список студентів (тип студент)
-список завдань
-Група не може існувати без старости.
-
-Методи класу:
-    змінити старосту
-    додати/видалити/перейменувати студента,
-    додати завдання (для всієї групи)
-
-позначити завдання як виконане (для зазначеного студента)
- */
 public class Group {
+    //region groupLeader
     private Student groupLeader;
+    public Student getGroupLeader() {
+        return groupLeader;
+    }
+    //endregion
+
     private List<Student> students = new ArrayList<Student>();
+
+    //region tasks
     private List<Task> tasks = new ArrayList<Task>();
+    public List<Task> getTasks() {
+        return this.tasks;
+    }
+    //endregion
 
     public Group(Student groupLeader) throws Exception {
         if (groupLeader == null){
-            throw new Exception("Student can not be a null");
+            throw new Exception("Group Leader can not be a null");
         }
         this.students.add(groupLeader);
         this.groupLeader = groupLeader;
     }
-    public Student getGroupLeader() {
-        return groupLeader;
-    }
-    public List<Task> getTasks() {
-        return this.tasks;
-    }
-
 
     public void changeGroupLeader(Student newGroupLeader) throws Exception {
         this.checkStudentForNull(newGroupLeader);
