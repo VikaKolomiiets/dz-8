@@ -47,8 +47,7 @@ public class Student {
         this.id = UUID.randomUUID();
         this.completedTasks = new ArrayList<Task>();
     }
-
-    public void addCompletedTask(Task completedTask) throws Exception {
+    public void completeTask(Task completedTask) throws Exception {
         if (completedTask == null){
             throw  new Exception("Task can not be a null");
         }
